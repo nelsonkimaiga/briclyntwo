@@ -21,5 +21,7 @@ from briclyn import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^home/', views.index, name='index'),
+    url(r'^accounts/logout/$', 'django.contrib.auth.views.logout',{'next_page': '/'}),
+    url(r'^accounts/', include('allauth.urls')),
+    url(r'^$', views.index, name='index'),
 ]
