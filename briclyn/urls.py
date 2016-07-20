@@ -23,5 +23,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout',{'next_page': '/'}),
     url(r'^accounts/', include('allauth.urls')),
+    
     url(r'^$', views.index, name='index'),
+    url(r'^profile/$', views.edit_profile, name='edit'),
 ]
