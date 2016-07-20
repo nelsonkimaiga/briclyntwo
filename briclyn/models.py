@@ -26,7 +26,7 @@ User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
 
 class listing(models.Model):
 	property_type = models.CharField(max_length=100, unique=False, blank=True)
-	customer_type = models.CharField(max_length=100, unique=False, blank=True)
+	transaction_type = models.CharField(max_length=100, unique=False, blank=True)
 	title = models.CharField(max_length=250, unique=False, blank=True)
 	description = models.CharField(max_length=250, unique=False, blank=False)
 	baths = models.IntegerField(default=0)
