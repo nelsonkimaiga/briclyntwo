@@ -9,6 +9,13 @@ class ListingAdmin(admin.ModelAdmin):
 	class Meta:
 		model = listing
 
+class CustomerAdmin(admin.ModelAdmin):
+	list_display = ["__unicode__", "phone"]
+	search_fields = ["phone"]
+	class Meta:
+		model = UserProfile
+
 
 
 admin.site.register(listing, ListingAdmin)
+admin.site.register(UserProfile, CustomerAdmin)
