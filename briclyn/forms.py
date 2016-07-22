@@ -19,3 +19,10 @@ class ProfileForm(forms.ModelForm):
 	class Meta:
 		model = UserProfile
 		fields = ('phone',)
+
+
+class ListingForm(forms.ModelForm):
+
+	class Meta:
+		model = listing
+		fields = ('property_type', 'transaction_type', 'title', 'description', 'baths', 'area', 'cost', 'price', 'city', 'location', 'photo')

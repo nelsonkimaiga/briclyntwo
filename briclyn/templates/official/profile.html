@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Profile</title>
+</head>
+<body>
+<form method="POST" action="/profile/">
+{% csrf_token %}
+{{ user_form }}
+{{ profile_form }}
+<input class="bttn4" type="submit" value="SAVE CHANGES" name="submit">
+</form>
+</body>
+</html>

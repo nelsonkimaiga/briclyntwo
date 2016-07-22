@@ -17,8 +17,9 @@ def edit_profile(request):
 
 	user = request.user
 	profile = UserProfile.objects.filter(user=user).get()
+	query = profile
 	user_form = UserForm(request.POST, instance=user)
-	profile_form = ProfileForm(request.POST, instance=profile)
+	profile_form = ProfileForm(request.POST, instance=query)
 
 	if request.method == 'POST':
 		user_form = UserForm(request.POST, instance=user)
