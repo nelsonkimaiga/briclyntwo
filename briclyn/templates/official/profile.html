@@ -6,9 +6,25 @@
 <body>
 <form method="POST" action="/profile/">
 {% csrf_token %}
-{{ user_form }}
-{{ profile_form }}
+
+<label>First Name:<input type="text" name="first_name" placeholder="your first name" value="{{ user.first_name }}"  >
+</label>
+
+<label>Last Name:<input type="text" name="last_name" placeholder="your last name" value="{{ user.last_name }}">
+</label>
+
+
+<label>Username:<input type="text" name="username" placeholder="Username" value="{{ user.username }}">
+</label>
+
+<label>Phone Number:<input type="text" name="phone" placeholder="your phone number" value="{{ profile.phone }}">
+</label>
+
+<label>Password:<input type="password" name="password" placeholder="password" value="{{ user.password }}">
+</label>
+
 <input class="bttn4" type="submit" value="SAVE CHANGES" name="submit">
+
 </form>
 </body>
 </html>

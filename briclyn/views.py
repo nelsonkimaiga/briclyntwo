@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import render,render_to_response
+from django.shortcuts import render,render_to_response, get_object_or_404
 from django.template import RequestContext
 
 from .models import *
@@ -15,22 +15,25 @@ def index(request):
 
 def edit_profile(request):
 
-	user = request.user
-	profile = UserProfile.objects.filter(user=user).get()
-	query = profile
+	# user = request.user
+	user = User.objects.get(id=request.user.id)
+	profile = UserProfile.objects.get(user=user)
 	user_form = UserForm(request.POST, instance=user)
-	profile_form = ProfileForm(request.POST, instance=query)
+	profile_form = ProfileForm(request.POST, instance=profile)
 
 	if request.method == 'POST':
 		user_form = UserForm(request.POST, instance=user)
 		profile_form = ProfileForm(request.POST, instance=profile)
 
-		if user_form.is_valid() and profile_form.is_valid():
-			user_form.save(commit=False)
-			profile_form.save(commit=False)
-			return HttpResponseRedirect('/home')
+		if user_form.is_valid():
+			if profile_form.is_valid():
+				user_form.save(commit=False)
+				profile_form.save(commit=False)
+				return HttpResponseRedirect('/home')
+			else:
+				form.ValidationError("Invalid details provided")
 		else:
-			form.ValidationError("Invalid details provided")
+			return form.ValidationError("Invalid details provided")
 	else:
 		user_form = UserForm(request.POST, instance=user)
 		profile_form = ProfileForm(request.POST, instance=profile)
