@@ -23,10 +23,22 @@ class UserProfile(models.Model):
 		return False
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
 
+PROPERTY_CHOICES = (
+	('HOUSE', 'House'),
+	('OFFICE', 'Office'),
+	('APARTMENT', 'Apartment'),
+	)
+
+TRANSACTION_CHOICES = (
+	('RENT', 'Rent'),
+	('SALE', 'Sale'),
+	)
+
+
 
 class listing(models.Model):
-	property_type = models.CharField(max_length=100, unique=False, blank=True)
-	transaction_type = models.CharField(max_length=100, unique=False, blank=True)
+	property_type = models.CharField(max_length=100, unique=False, blank=True, choices=PROPERTY_CHOICES)
+	transaction_type = models.CharField(max_length=100, unique=False, blank=True, choices=TRANSACTION_CHOICES)
 	title = models.CharField(max_length=250, unique=False, blank=True)
 	description = models.CharField(max_length=250, unique=False, blank=False)
 	baths = models.IntegerField(default=0)

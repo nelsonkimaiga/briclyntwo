@@ -1,12 +1,13 @@
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django import forms
+from django.forms import ModelForm
 from .models import *
 
 
 #-------------------------------------------------------------------------------------
 
-class UserForm(forms.ModelForm):
+class UserForm(ModelForm):
 
 	class Meta:
 		model = User
@@ -14,14 +15,14 @@ class UserForm(forms.ModelForm):
 
 #-------------------------------------------------------------------------------------
 
-class ProfileForm(forms.ModelForm):
+class ProfileForm(ModelForm):
 
 	class Meta:
 		model = UserProfile
 		fields = ('phone',)
 
 
-class ListingForm(forms.ModelForm):
+class ListingForm(ModelForm):
 
 	class Meta:
 		model = listing

@@ -17,6 +17,7 @@ def edit_profile(request):
 
 	# user = request.user
 	user = User.objects.get(id=request.user.id)
+	# profile = UserProfile.objects.filter(user=user).get()
 	profile = UserProfile.objects.get(user=user)
 	user_form = UserForm(request.POST, instance=user)
 	profile_form = ProfileForm(request.POST, instance=profile)
