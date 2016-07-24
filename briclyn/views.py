@@ -21,7 +21,6 @@ def edit_profile(request):
 
 	# user = request.user
 	user = request.user
-	# profile = UserProfile.objects.filter(user=user).get()
 	profile = UserProfile.objects.get(user=user)
 	user_form = UserForm(request.POST, instance=user)
 	profile_form = ProfileForm(request.POST, instance=profile)
@@ -32,10 +31,10 @@ def edit_profile(request):
 
 		if user_form.is_valid():
 			if profile_form.is_valid():
-				user_instance = user_form.save(commit=False)
-				profile_instance = profile_form.save(commit=False)
-				user_instance.save()
-				profile_instance.save()
+				user = user_form.save(commit=False)
+				profile = profile_form.save(commit=False)
+				user.save()
+				profile.save()
 				messages.success(request, "Successfully Saved Changes!")
 				return HttpResponseRedirect('/home')
 			else:
@@ -46,3 +45,26 @@ def edit_profile(request):
 		user_form = UserForm(request.POST, instance=user)
 		profile_form = ProfileForm(request.POST, instance=profile)
 	return render(request, 'official/profile.html', {'user_form':user_form, 'profile_form':profile_form})
+
+def PasswordChangeForm(request):
+
+    if request.method == "POST":
+        form = PasswordChangeForm(request.POST)
+        if form.is_valid():
+            try:
+                request.user.set_password(form.cleaned_data['password'])
+                request.user.save()
+            except Exception, err:
+                print "Error changing password: {}".format(err)
+                messages.add_message(request, messages.ERROR, 'The password could not be changed, please try again '
+                                                              'later. This admins have been notified of this error.')
+            else:
+                #this outputs True
+                print request.user.is_authenticated()
+
+                messages.add_message(request, messages.INFO, 'Your password has been changed successfully')
+                return HttpResponseRedirect("/accounts/dashboard/")
+    else:
+        form = SubscriberPasswordForm()
+
+    return render(request, "official/profile.html", {"form": form})
