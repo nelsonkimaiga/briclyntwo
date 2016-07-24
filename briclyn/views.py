@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render,render_to_response, get_object_or_404
@@ -12,11 +13,14 @@ from briclyn.forms import *
 def index(request):
 	return render(request, 'official/index.html', {})
 
+def home(request):
+	return render(request, 'official/home.html', {})
+
 
 def edit_profile(request):
 
 	# user = request.user
-	user = User.objects.get(id=request.user.id)
+	user = request.user
 	# profile = UserProfile.objects.filter(user=user).get()
 	profile = UserProfile.objects.get(user=user)
 	user_form = UserForm(request.POST, instance=user)
@@ -28,8 +32,11 @@ def edit_profile(request):
 
 		if user_form.is_valid():
 			if profile_form.is_valid():
-				user_form.save(commit=False)
-				profile_form.save(commit=False)
+				user_instance = user_form.save(commit=False)
+				profile_instance = profile_form.save(commit=False)
+				user_instance.save()
+				profile_instance.save()
+				messages.success(request, "Successfully Saved Changes!")
 				return HttpResponseRedirect('/home')
 			else:
 				form.ValidationError("Invalid details provided")
