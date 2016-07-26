@@ -3,4 +3,7 @@
   <data-source name="Django default" uuid="f8274991-192e-4a50-a00a-e2d2dbfb78cc">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
+  <data-source name="Django default2" uuid="8ee2d77b-53d6-41e4-b003-24cf552dca57">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
 </component>

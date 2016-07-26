@@ -6,5 +6,9 @@
       <user-name>master</user-name>
       <user-password>dfc7dfcbdfd9dfdedfcfdfd8df9adf9b</user-password>
     </data-source>
+    <data-source name="Django default2" uuid="8ee2d77b-53d6-41e4-b003-24cf552dca57">
+      <user-name>master</user-name>
+      <user-password>dfc7dfcbdfd9dfdedfcfdfd8df9adf9b</user-password>
+    </data-source>
   </component>
 </project>
