@@ -20,11 +20,15 @@
 <label>Phone Number:<input type="text" name="phone" placeholder="your phone number" value="{{ profile.phone }}">
 </label>
 
-<label>Password:<input type="password" name="password" placeholder="password" value="{{ user.password }}">
-</label>
 
 <input class="bttn4" type="submit" value="SAVE CHANGES" name="submit">
 
 </form>
+
+<form method="POST" action="{% url 'account_change_password' %}" class="password_change">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" name="action">Change Password</button>
+    </form>
 </body>
 </html>
