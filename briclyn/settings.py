@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     # 'allauth.socialaccount.providers.facebook',
+    'haystack',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -182,6 +183,23 @@ TEMPLATE_CONTEXT_PROCESSORS = (
    #"allauth.account.context_processors.account",
    #"allauth.socialaccount.context_processors.socialaccount",
 )
+
+
+
+#Search Engine
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
+    },
+}
+
+
+
+
+
+
+
 
 LOGIN_REDIRECT_URL = '/'
 SOCIALACCOUNT_QUERY_EMAIL = True
