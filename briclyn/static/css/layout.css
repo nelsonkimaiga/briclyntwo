@@ -1,0 +1,29 @@
+.feature
+{
+	margin-bottom:2.25em;
+	/*margin-left:2.25em;*/
+	text-align:center;
+}
+.picture{
+	text-align: center;
+	margin-bottom:2.25em;
+	margin-top:2.25em;
+	/*margin-left: 3.00em;*/
+} 
+
+.feature,
+.caption
+ {
+ 	font-size:1.3em;
+  	font-weight:normal;
+  	margin-bottom:.8em;
+  	min-height:2.43em;
+  	color:#3e4e5c;
+  	text-align:left;
+}
+.summary
+ {
+ 	color:#737d85;
+ 	font-size:.86em; 
+ 	text-align:left;
+ }
