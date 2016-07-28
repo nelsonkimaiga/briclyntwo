@@ -55,3 +55,10 @@ class listing(models.Model):
 
 	def __str__(self):
 		return self.title
+
+
+# class emailResponse(models.Model):
+# 	first_name = models.CharField()
+# 	last_name = models.CharField()
+# 	email = models.EmailField()
+# 	message = models.CharField()
