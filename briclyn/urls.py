@@ -10,7 +10,7 @@ from briclyn import views
 
 urlpatterns = patterns('',
     url(r'^admin/', admin.site.urls),
-    url(r'^search/', include('haystack.urls')),
+    # url(r'^search/', include('haystack.urls')),
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout',{'next_page': '/'}),
     url(r'^accounts/', include('allauth.urls')),
     

@@ -2,9 +2,10 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="Django default" uuid="f8274991-192e-4a50-a00a-e2d2dbfb78cc">
-      <first-sync>true</first-sync>
       <user-name>master</user-name>
       <user-password>dfc7dfcbdfd9dfdedfcfdfd8df9adf9b</user-password>
+      <schema-pattern>briclyn.pg_catalog briclyn.public</schema-pattern>
+      <default-schemas>briclyn.public</default-schemas>
     </data-source>
     <data-source name="Django default2" uuid="8ee2d77b-53d6-41e4-b003-24cf552dca57">
       <user-name>master</user-name>
