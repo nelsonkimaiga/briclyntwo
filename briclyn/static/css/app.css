@@ -20,6 +20,9 @@ body{
 	font-family: 'Poiret One', cursive;
 	/*font-family: 'Raleway', sans-serif;*/
 }
+a{	
+	font-family: 'Raleway', sans-serif;
+}
 .clearfix:before,
 .clearfix:after {
   display: table;
