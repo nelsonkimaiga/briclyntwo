@@ -6,7 +6,8 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render,render_to_response, get_object_or_404
 from django.utils import timezone
-
+from django.template import RequestContext
+from django.contrib.auth import logout
 from .models import *
 from briclyn.forms import *
 
@@ -50,6 +51,7 @@ def edit_profile(request):
 		profile_form = ProfileForm(request.POST, instance=profile)
 	return render(request, 'official/profile.html', {'user_form':user_form, 'profile_form':profile_form})
 
+
 def PasswordChangeForm(request):
 
     if request.method == "POST":
@@ -72,6 +74,32 @@ def PasswordChangeForm(request):
         form = SubscriberPasswordForm()
 
     return render(request, "official/profile.html", {"form": form})
+
+
+def addnewlisting(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect(settings.LOGIN_URL, request.path)
+    
+    listing_form = ListingForm(request.POST, request.FILES)
+
+    if request.method == 'POST':        
+        data = {}
+        ads_form = offlinead(request.POST, request.FILES, postdata)
+        request_data_new_listing.RequestDataNewListing.run(request.POST, request.FILES, data)
+        # data
+        # return JsonResponse(request.POST)
+        save_customer_listing.SaveCustomerAd.run(data)
+        messages.success(request, "Yes")
+        return HttpResponseRedirect('/update_ad/{}/'.format(data['sav'].id))
+    else:
+
+        ads_form = offlinead(request.POST, request.FILES)
+        request.session.set_test_cookie()
+        print(ads_form)
+
+        return render(request,
+                      'official/createads.html',
+                      {'ads_form': ads_form,'count': q, 'expired': expired, 'live': live_ads, 'incomplete': incomplete,}, context_instance=RequestContext(request))
 
 
 
