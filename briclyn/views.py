@@ -81,29 +81,24 @@ def PasswordChangeForm(request):
 
     return render(request, "official/profile.html", {"form": form})
 
-
 def addnewlisting(request):
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect(settings.LOGIN_URL, request.path)
-    
-    listing_form = ListingForm(request.POST, request.FILES)
-
-    if request.method == 'POST':        
-        data = {}
-        listing_form = ListingForm(request.POST, request.FILES)
-        request_data_new_listing.RequestDataNewListing.run(request.POST, request.FILES, data)
-        # data
-        # return JsonResponse(request.POST)
-        save_customer_listing.SaveCustomerAd.run(data)
-        messages.success(request, "Yes")
-        return HttpResponseRedirect('/listings')
-    else:
-
-        listing_form = ListingForm(request.POST, request.FILES)
-
-        return render(request,
-                      'official/createlisting.html',
-                      {'listing_form': listing_form,}, context_instance=RequestContext(request))
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect(settings.LOGIN_URL, request.path)
+	listing_form = ListingForm(request.POST, request.FILES)
+	
+	if request.method == 'POST':
+		data = {}
+		listing_form = ListingForm(request.POST, request.FILES)
+		request_data_new_listing.RequestDataNewListing.run(request.POST, request.FILES, data)
+		# return JsonResponse(request.POST)
+		save_customer_listing.SaveCustomerAd.run(data)
+		messages.success(request, "Yes")
+		return HttpResponseRedirect('/listings')
+	else:
+		listing_form = ListingForm(request.POST, request.FILES)
+		return render(request,
+	                  'official/createlisting.html',
+	                  {'listing_form': listing_form,}, context_instance=RequestContext(request))
 
 
 
@@ -150,3 +145,4 @@ def listing_detail(request, id=None):
 		"share_string": share_string,
 	}
 	return render(request, "official/listing_detail.html", context)
+
