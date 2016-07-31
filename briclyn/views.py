@@ -90,22 +90,20 @@ def addnewlisting(request):
 
     if request.method == 'POST':        
         data = {}
-        ads_form = offlinead(request.POST, request.FILES, postdata)
+        listing_form = ListingForm(request.POST, request.FILES)
         request_data_new_listing.RequestDataNewListing.run(request.POST, request.FILES, data)
         # data
         # return JsonResponse(request.POST)
         save_customer_listing.SaveCustomerAd.run(data)
         messages.success(request, "Yes")
-        return HttpResponseRedirect('/update_ad/{}/'.format(data['sav'].id))
+        return HttpResponseRedirect('/listings')
     else:
 
-        ads_form = offlinead(request.POST, request.FILES)
-        request.session.set_test_cookie()
-        print(ads_form)
+        listing_form = ListingForm(request.POST, request.FILES)
 
         return render(request,
-                      'official/createads.html',
-                      {'ads_form': ads_form,'count': q, 'expired': expired, 'live': live_ads, 'incomplete': incomplete,}, context_instance=RequestContext(request))
+                      'official/createlisting.html',
+                      {'listing_form': listing_form,}, context_instance=RequestContext(request))
 
 
 
