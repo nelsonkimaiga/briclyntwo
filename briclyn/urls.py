@@ -17,4 +17,6 @@ urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
     url(r'^profile/$', views.edit_profile, name='edit'),
     url(r'^home/$', views.home, name='home'),
+
+    url(r'^listings/$', views.listing_items, name='listings'),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

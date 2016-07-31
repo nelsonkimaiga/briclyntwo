@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.core.exceptions import ValidationError
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render,render_to_response, get_object_or_404
@@ -73,7 +74,7 @@ def PasswordChangeForm(request):
 
 
 
-def listings(request):
+def listing_items(request):
 	today = timezone.now().date()
 	# queryset_list = Post.objects.active()#.order_by("-timestamp")
 	# if request.user.is_staff or request.user.is_superuser:
@@ -102,4 +103,4 @@ def listings(request):
 		"today": today,
 		}
 		
-	return render(request, "listings.html", context)
+	return render(request, "official/listings.html", context)
