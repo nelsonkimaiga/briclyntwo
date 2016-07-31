@@ -2,8 +2,9 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import render,render_to_response, get_object_or_404
 from django.template import RequestContext
+from django.shortcuts import render,render_to_response, get_object_or_404
+from django.utils import timezone
 
 from .models import *
 from briclyn.forms import *
@@ -69,3 +70,36 @@ def PasswordChangeForm(request):
         form = SubscriberPasswordForm()
 
     return render(request, "official/profile.html", {"form": form})
+
+
+
+def listings(request):
+	today = timezone.now().date()
+	# queryset_list = Post.objects.active()#.order_by("-timestamp")
+	# if request.user.is_staff or request.user.is_superuser:
+	queryset_list = listing.objects.all()
+
+	query = request.GET.get("q")
+	if query:
+		queryset_list = queryset_list.filter(title__icontains=query)
+
+	paginator = Paginator(queryset_list, 10) # Show 5 contacts per page
+	page_request_var = "listing"
+	page = request.GET.get(page_request_var)
+	try:
+		queryset = paginator.page(page)
+	except PageNotAnInteger:
+	# If page is not an integer, deliver first page.
+		queryset = paginator.page(1)
+	except EmptyPage:
+	# If page is out of range (e.g. 9999), deliver last page of results.
+		queryset = paginator.page(paginator.num_pages)
+
+	context = {
+		"object_list": queryset,
+		"title": "List",
+		"page_request_var": page_request_var,
+		"today": today,
+		}
+		
+	return render(request, "listings.html", context)
