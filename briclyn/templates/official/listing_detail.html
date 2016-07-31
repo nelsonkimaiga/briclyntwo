@@ -3,7 +3,18 @@
 {% block content %}
     
 
+ <h1> <p class="title"> {{ title }} </p><small>
 
+Location: {{ instance.location }}</small></h1>
+
+
+
+
+
+<p>Author: </p>
+<hr>
+
+{{ instance.description|linebreaks }}
 
 
 {% endblock %}

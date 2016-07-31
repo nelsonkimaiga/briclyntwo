@@ -10,6 +10,7 @@ from django.utils import timezone
 from .models import *
 from briclyn.forms import *
 
+from urllib import quote_plus
 
 
 def index(request):
@@ -104,3 +105,16 @@ def listing_items(request):
 		}
 		
 	return render(request, "official/listings.html", context)
+
+
+def listing_detail(request, id=None):
+	instance = get_object_or_404(listing, id=id)
+	if not request.user.is_staff or not request.user.is_superuser:
+		raise Http404
+	share_string = quote_plus(instance.description)
+	context = {
+		"title": instance.title,
+		"instance": instance,
+		"share_string": share_string,
+	}
+	return render(request, "official/listing_detail.html", context)
