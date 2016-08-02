@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     url(r'^profile/$', views.edit_profile, name='edit'),
     url(r'^home/$', views.home, name='home'),
 
+    url(r'^create/$', views.addnewlisting, name='create'),
     url(r'^listings/$', views.listing_items, name='listings'),
     url(r'^(?P<id>\d+)/$', views.listing_detail, name='detail'),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

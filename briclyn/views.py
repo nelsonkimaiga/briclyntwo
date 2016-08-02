@@ -90,29 +90,26 @@ def addnewlisting(request):
 		data = {}
 		listing_form = ListingForm(request.POST, request.FILES)
 		request_data_new_listing.RequestDataNewListing.run(request.POST, request.FILES, data)
-		# return JsonResponse(request.POST)
 		save_customer_listing.SaveCustomerAd.run(data)
 		messages.success(request, "Yes")
 		return HttpResponseRedirect('/listings')
 	else:
 		listing_form = ListingForm(request.POST, request.FILES)
 		return render(request,
-	                  'official/createlisting.html',
+	                  'official/create_listing.html',
 	                  {'listing_form': listing_form,}, context_instance=RequestContext(request))
 
 
 
 def listing_items(request):
 	today = timezone.now().date()
-	# queryset_list = Post.objects.active()#.order_by("-timestamp")
-	# if request.user.is_staff or request.user.is_superuser:
 	queryset_list = listing.objects.all()
 
 	query = request.GET.get("q")
 	if query:
 		queryset_list = queryset_list.filter(title__icontains=query)
 
-	paginator = Paginator(queryset_list, 10) # Show 5 contacts per page
+	paginator = Paginator(queryset_list, 10) 
 	page_request_var = "listing"
 	page = request.GET.get(page_request_var)
 	try:
@@ -140,6 +137,7 @@ def listing_detail(request, id=None):
 		raise Http404
 	share_string = quote_plus(instance.description)
 	context = {
+		"photo": instance.photo,
 		"title": instance.title,
 		"instance": instance,
 		"share_string": share_string,
