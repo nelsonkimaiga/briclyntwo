@@ -15,7 +15,7 @@ from urllib import quote_plus
 
 
 from briclyn.forms import *
-from business import request_data_new_listing
+from business import request_new_listing
 from business import save_customer_listing
 from business import send_listing_email
 
@@ -89,7 +89,7 @@ def addnewlisting(request):
 	if request.method == 'POST':
 		data = {}
 		listing_form = ListingForm(request.POST, request.FILES)
-		request_data_new_listing.RequestDataNewListing.run(request.POST, request.FILES, data)
+		request_new_listing.RequestNewListing.run(request.POST,request.FILES, data)
 		save_customer_listing.SaveCustomerAd.run(data)
 		messages.success(request, "Yes")
 		return HttpResponseRedirect('/listings')

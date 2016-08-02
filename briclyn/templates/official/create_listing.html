@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>CREATE LISTING ::Briclyn</title>
+	<title>CREATE NEW LISTING :: Briclyn</title>
 </head>
 <body>
+
+<form method="POST" action="/create/">
+{% csrf_token %}
+
+{{ listing_form.as_p }}
+
+<input class="bttn4" type="submit" value="SAVE Listing" name="submit">
+
+</form>
+
 
 </body>
 </html>

@@ -17,18 +17,17 @@ class SaveCustomerAd():
 		title=save_listing_data.title
 		description = save_listing_data.description
 		baths =save_listing_data.baths
+		bedrooms =save_listing_data.bedrooms
 		area=save_listing_data.area
 		cost=save_listing_data.cost
 		price = save_listing_data.price
 		city = save_listing_data.city
 		location = save_listing_data.location
 		photo = save_image.photo
-		# print(image)
 		# created_at = datetime.strptime(created_at, "%d/%m/%Y")
 		# end_date = datetime.strptime(end_date, "%d/%m/%Y")
-		sav =listing(property_type=property_type, transaction_type=transaction_type,title=title, description=description, baths=baths,area=area,cost=cost, price=price, city=city, location=location, photo=photo)
+		sav =listing(property_type=property_type, transaction_type=transaction_type,title=title, description=description, baths=baths, bedrooms=bedrooms, area=area,cost=cost, price=price, city=city, location=location, photo=photo)
 		sav.save()
-		#save_ad_data.save()
 		data['sav']=sav
 		data['save_listing_data']= save_listing_data
 		

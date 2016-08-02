@@ -10,7 +10,7 @@ class SendAdEmail():
 		subject ="Your Listing was created succesfully"
 		subject, from_email, to = subject, settings.EMAIL_HOST_USER, user.email
 		text_content = 'Your Briclyn Listing has been added'
-		html_content = "<p>This is your <strong>adlink</strong>"
+		html_content = "<p>This is your <strong>briclyn</strong>"
 		msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
 		msg.attach_alternative(html_content, "text/html")
 		msg.send()
