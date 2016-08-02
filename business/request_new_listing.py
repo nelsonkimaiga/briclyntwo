@@ -1,8 +1,8 @@
-class RequestDataNewListing():
+class RequestNewListing():
 	def run(request_data,request_files,data):
 		
-		data['new_listing_data']=RequestDataNewAd.get_data(request_data)		
-		data['new_listing_file']=RequestDataNewAd.get_image(request_files)
+		data['new_listing_data']=RequestNewListing.get_data(request_data)		
+		data['new_listing_file']=RequestNewListing.get_image(request_files)
 
 
 	def get_data(request_data):
@@ -12,6 +12,7 @@ class RequestDataNewListing():
 		new_listing_data['title'] = request_data.get('title')
 		new_listing_data['description']= request_data.get('description')
 		new_listing_data['baths'] = request_data.get('baths')
+		new_listing_data['bedrooms'] = request_data.get('bedrooms')
 		new_listing_data['area'] = request_data.get('area')
 		new_listing_data['cost'] = request_data.get('cost')
 		new_listing_data['price'] = request_data.get('price')

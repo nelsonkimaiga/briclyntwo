@@ -42,6 +42,7 @@ class listing(models.Model):
 	title = models.CharField(max_length=250, unique=False, blank=True)
 	description = models.CharField(max_length=250, unique=False, blank=False)
 	baths = models.IntegerField(default=0, null=True, blank=True)
+	bedrooms = models.IntegerField(default=0, null=True, blank=True)
 	area = models.CharField(max_length=100, default=0)
 	cost = models.IntegerField(default=0, blank=True, null=True)
 	price = models.DecimalField(max_digits=9,decimal_places=2, default=0, null=True, blank=True)

@@ -51,7 +51,7 @@ class ListingForm(ModelForm):
 
 	class Meta:
 		model = listing
-		fields = ('property_type', 'transaction_type', 'title', 'description', 'baths', 'area', 'cost', 'price', 'city', 'location', 'photo')
+		fields = ('property_type', 'transaction_type', 'title', 'description', 'baths', 'bedrooms', 'area', 'cost', 'price', 'city', 'location', 'photo')
 
 
 #---------------------------------------------------------------------------------------------
