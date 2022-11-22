@@ -1,5 +1,5 @@
 Django==1.9.8
-Pillow==3.2.0
+Pillow==9.3.0
 PyJWT==1.4.0
 argparse==1.2.1
 cffi==1.6.0
